@@ -1,0 +1,161 @@
+<div class="min-app">
+  <svg-icon icon="icon-small_screen"></svg-icon>
+  <br />
+  Please use a tablet or desktop for the best connected worker experience
+</div>
+
+<mat-sidenav-container class="main-app">
+  <mat-sidenav
+    #sidenav
+    mode="side"
+    opened
+    [ngClass]="{
+      'hide-content': isUserAuthenticated === false,
+      'menu-close': !menuOpenClose
+    }"
+    (mouseenter)="openMenuOnMouseEnter()"
+    (mouseleave)="closeMenuOnMouseLeave()"
+  >
+    <div class="logo-img">
+      <svg-icon
+        icon="icon-innova-big"
+        [hidden]="!menuOpenClose"
+        class="innov-big-img"
+      ></svg-icon>
+      <svg-icon
+        icon="icon-innova-small"
+        [hidden]="menuOpenClose"
+        class="innova-small-img"
+      ></svg-icon>
+    </div>
+    <div class="sidebar-menu-items" #falseClick>
+      <mat-nav-list
+        class="menu-item"
+        *ngFor="let menuitem of menus; let i = index"
+      >
+        <ng-container>
+          <ul class="m-0">
+            <li *ngIf="(!menuitem.disable && isShellUser)|| !isShellUser"
+              routerLinkActive="selected"
+              routerDirection="root"
+              title="{{ menuitem.title }}"
+              class="dis-flex"
+            >
+              <a
+                mat-list-item
+                class="menu-name"
+                [routerLink]="menuitem.url"
+                routerLinkActive="active"
+                (click)="selectedListElement(menuitem.title)"
+              >
+                <svg-icon
+                  [icon]="
+                    getImage(
+                      menuitem.imageName,
+                      selectedMenu === menuitem.title
+                    )
+                  "
+                  class="sidebar-icons"
+                ></svg-icon>
+                <span class="menu-title" *ngIf="menuOpenClose">
+                  {{ menuitem.title }}
+                </span>
+              </a>
+              <ng-container
+              >
+                <a
+                  *ngIf="menuitem.subPages !== null && menuOpenClose"
+                  class="arrow-margin"
+                  (click)="menuitem.showSubMenu = !menuitem.showSubMenu"
+                >
+                  <svg-icon
+                    icon="icon-right-arrow"
+                    [hidden]="menuitem.showSubMenu === true"
+                    class="icon-arrow"
+                  ></svg-icon>
+                  <svg-icon
+                    icon="icon-down-arrow"
+                    [hidden]="menuitem.showSubMenu === false"
+                    class="icon-arrow"
+                  ></svg-icon>
+                </a>
+              </ng-container>
+            </li>
+          </ul>
+        </ng-container>
+
+        <div
+          *ngIf="
+            menuitem.showSubMenu && menuitem.subPages !== null && menuOpenClose
+          "
+          class="m-l-70"
+        >
+          <ng-container>
+            <ng-container
+            >
+              <ul
+                lines="none"
+                class="p-0 m-0"
+                *ngFor="let submenuitem of menuitem.subPages"
+              >
+                <a
+                  class="submenu m-0"
+                  mat-list-item
+                  [routerLink]="submenuitem.url"
+                  routerLinkActive="subSelected"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="selectedListElement(submenuitem.title)"
+                >
+                  <span>{{ submenuitem.title }}</span>
+                </a>
+              </ul>
+            </ng-container>
+          </ng-container>
+        </div>
+      </mat-nav-list>
+    </div>
+    <div class="version" [hidden]="!menuOpenClose">
+      Version {{ appVersion }}
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <app-header
+      [menuOpenClose]="menuOpenClose"
+      (sideNavToggle)="toggleMenu()"
+      (outsideClickTrigger)="closeSideNav()"
+      (signOutHandler)="onSignOut()"
+      [selectedMenu]="this.selectedMenu"
+      [ngClass]="{
+        'hide-content': isUserAuthenticated === false
+      }"
+    ></app-header>
+
+    <main
+      (click)="closeSideNav()"
+      [ngClass]="{
+        'show-content': this.currentRouteUrl !== '/login',
+        'show-login':
+          this.currentRouteUrl === '/login' || isUserAuthenticated === false
+      }"
+    >
+      <router-outlet>
+        <ngx-skeleton-loader
+        *ngIf="displayLoader$ | async"
+        count="5"
+        appearance="line"
+      ></ngx-skeleton-loader>
+      </router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<ng-template #loadingMenu>
+  <ngx-skeleton-loader
+    count="5"
+    appearance="line"
+    [ngClass]="{
+      'sidebar-close-loader': menuOpenClose === false,
+      'sidebar-open-loader': menuOpenClose === true
+    }"
+  ></ngx-skeleton-loader>
+</ng-template>

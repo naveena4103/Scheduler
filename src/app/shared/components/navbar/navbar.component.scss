@@ -1,0 +1,128 @@
+// @import '../scss/colors.scss';
+
+.example-container {
+  position: absolute;
+  top: 60px;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+}
+
+::ng-deep .example-sidenav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  //   background: rgba(255, 0, 0, 0.5);
+  margin-left: -1.25%;
+}
+
+.example-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.example-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.menu-title {
+  white-space: nowrap;
+  position: relative;
+  left: 3%;
+  font-weight: 500;
+  font-size: 110%;
+}
+
+.menu-name {
+  color: black;
+  font-weight: 500;
+  font-size: 140%;
+}
+
+.menu-name.active {
+  color: #2a3eb1;
+}
+
+.menu-name:hover {
+  background-color: transparent;
+}
+
+.menu-name:focus {
+  background-color: transparent;
+}
+
+::ng-deep .module {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 140%;
+}
+
+.search-field {
+  position: relative;
+  top: 8px;
+}
+
+.custom-search-bar {
+  width: 184px;
+  margin: 0 7px;
+}
+
+.moduleDiv {
+  padding: 7% 0 0 8%;
+}
+
+.menu-item li:hover {
+  background-color: #eeeeee;
+}
+
+.arrow-margin {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.icon-arrow {
+  ::ng-deep svg {
+    width: 10px !important;
+    height: 10px !important;
+  }
+}
+
+.submenu {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 140%;
+  color: black;
+  cursor: pointer;
+  margin: 0 0 0 10px;
+  height: 48px !important;
+}
+
+.submenu.subSelected {
+  color: #2a3eb1;
+  background: #f0f3ff;
+  border-radius: 8px;
+  width: 95%;
+}
+
+::ng-deep .sidebar-menu-items .mat-list-item-content {
+  padding: 0 10px !important;
+}
+
+.sidebar-menu-items {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - 110px);
+  margin-bottom: 15px;
+  margin-top: 10px;
+
+  ::ng-deep .mat-list-base {
+    padding-top: 0 !important;
+  }
+}

@@ -1,0 +1,83 @@
+<div class="main-container">
+  <div class="back-navigator-container">
+    <button class="back-arrow-btn" (click)="onClickBackArrow()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </div>
+  <div class="header-container">
+    <span class="heading">Scheduler</span>
+    <div class="header-right-container">
+      <button (click)="onReschedule()" class="reschedule">Re-schedule</button>
+    </div>
+  </div>
+  <div class="body-container">
+    <div class="calender-container">
+      <!-- <app-schedule-order></app-schedule-order> -->
+
+      <!-- <app-chart-component></app-chart-component> -->
+      <div class="calender">
+        <div class="calender-header">
+          <div class="month">August 2021</div>
+          <div class="biweek">Bi-Weekly</div>
+        </div>
+        <app-chart-component [workOrders]="scheduledOrders"></app-chart-component>
+
+        <!-- <div class="calender-body"> -->
+            <!-- <app-chart-component></app-chart-component> -->
+
+          <!-- <div class="cell-header-container">
+            <div class="cell-header" *ngFor="let eachHeader of headerData">
+              {{ eachHeader.name }}
+            </div>
+          </div>
+           <div class="cell-body-container">
+            <div class="cell-body" *ngFor="let eachHeader of headerData">
+              <div *ngFor="let eachOrder of scheduledOrders">
+                <div
+                  class="new-card-container"
+                  *ngIf="eachOrder.day === eachHeader.day"
+                >
+                  <div class="new-header">
+                    <span [ngClass]="'priority-' + eachOrder.priorityNumber"
+                      >{{ eachOrder.priorityStatus }}-{{
+                        eachOrder.priorityNumber
+                      }}</span
+                    >
+                    <span
+                      class="new-type"
+                      [ngClass]="
+                        eachOrder.type === 'PM01' ? 'type-pmo1' : 'type-pmo2'
+                      "
+                      >{{ eachOrder.type }}</span
+                    >
+                  </div>
+                  <span class="new-order-id">{{ eachOrder.workOrderID }}</span>
+                  <div class="new-details-container">
+                    <div class="detail-container">
+                      <svg-icon
+                        icon="icon-dataIcon"
+                        class="list-icons"
+                      ></svg-icon>
+
+                      <span class="detail-name">{{
+                        eachOrder.workCenter
+                      }}</span>
+                    </div>
+                    <div class="detail-container">
+                      <span class="detail-name">{{
+                        eachOrder.estimatedTime
+                      }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>  -->
+        <!-- </div> -->
+      </div>
+    </div>
+    <div class="resource-container">
+    
+    </div>
+  </div>
+</div>

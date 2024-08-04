@@ -1,0 +1,65 @@
+<div class="main-container">
+    <div class="header-container">
+        <span class="heading">Work Orders</span>
+        <div class="header-right-container">
+            <button (click)="onSchedule()" class="reschedule" #openScheduleBtn>Schedule Work Orders</button>
+        </div>
+    </div>
+    <div class="body-container">
+
+        <div *ngIf="!isLoadingOrders; else loader" class="dynamic-table-container">
+            <cwp-dynamictable
+              [dataSource]="dataSource"
+              [configOptions]="configOptions"
+              class="width-100"
+            ></cwp-dynamictable>
+          </div>
+          <ng-template #loader>
+            <div class="loader">
+              <ngx-skeleton-loader
+                count="12"
+                appearance="line"
+                [theme]="{ height: '40px' }"
+              />
+            </div>
+          </ng-template>
+    </div>
+</div>
+
+<ng-template #scheduleContent>
+  
+  
+    <!-- <div class="button-container">
+      <button class="cancel-button" (click)="onClickConfirm()">
+        Confirm
+      </button>
+      <button class="delete-button" (click)="onClickCancel()">
+      Cancel
+      </button>
+    </div> -->
+    <div class="preview-container">
+      <div class="header-container">
+        <span class="preview">{{"Preview (Rules of scheduling)"}}</span>
+        <mat-icon class="close-icon" color="warn" (click)="onClickCancel()">close</mat-icon>
+</div>
+<hr class="horizantal-line"/>
+<div class="preview-body">
+  <p class="heading">Order of prioritizing workorders</p>
+  <span>{{"Order Type-PM01, PM02"}}</span>
+  <span>{{"Priority"}}</span>
+  <span>{{"ABCIndicator"}}</span>
+  <span>{{"Start Date"}}</span>
+
+</div>
+<hr class="horizantal-line"/>
+    <div class="button-container">
+      <button class="confirm-button" (click)="onClickConfirm()">
+        Confirm
+      </button>
+      <button class="cancel-button" (click)="onClickCancel()">
+      Cancel
+      </button>
+    </div>
+    </div>
+  
+</ng-template>

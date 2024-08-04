@@ -1,0 +1,18 @@
+@import 'colors.scss';
+
+.alert-btn {
+  text-align: right;
+}
+
+.path-text {
+  color: $light-gray;
+}
+
+.alert-btn-text {
+  background-color: $blue-main;
+  color: $white;
+}
+
+.alert-text {
+  font-size: 110%;
+}

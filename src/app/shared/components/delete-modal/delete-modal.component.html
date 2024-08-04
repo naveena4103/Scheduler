@@ -1,0 +1,14 @@
+<div class="delete-modal-container">
+  <div class="modal-content-container">
+    <h1 mat-dialog-title>Delete {{ data.title }}?</h1>
+    <div class="delete-modal-content">
+      {{ data.content }}
+    </div>
+  </div>
+  <div class="modal-actions-container" mat-dialog-actions>
+    <button class="cancel-btn" (click)="onClose('close')">Cancel</button>
+    <button class="delete-btn" color="warn" (click)="onClose('delete')">
+      Delete
+    </button>
+  </div>
+</div>

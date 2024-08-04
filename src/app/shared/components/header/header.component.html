@@ -1,0 +1,36 @@
+<mat-toolbar class="min-toolbar" [ngClass]="{ 'open-close-header': menustate === true }">
+  <button id="headerOpenSideNav" mat-icon-button (click)="openSidenav()" aria-label="Side Menu Toggle">
+    <mat-icon class="menu-icon">menu</mat-icon>
+  </button>
+
+  <div class="width-50" (click)="closeSidenav()">
+    <div>
+      <h6 id="headerTitle" class="header-title" *ngIf="this.headerTitle$ | async as headerTitle; else headerLoading">
+        {{ headerTitle }}
+      </h6>
+    </div>
+    <div class="breadcrumbs">
+      <xng-breadcrumb separator=">"></xng-breadcrumb>
+    </div>
+  </div>
+  <div class="header-right">
+    <svg-icon icon="icon-nine-dots" class="icon-nine-dots"></svg-icon>
+    <div class="profile-container">
+      <mat-icon class="profile-icon">account_circle</mat-icon>
+      
+      <img src="assets/Images/inn_logo.png">
+    </div>
+  </div>
+  <ng-container class="emptyPageContainer"> </ng-container>
+</mat-toolbar>
+<ng-template #headerLoading>
+  <div class="header-loading">
+    <ngx-skeleton-loader count="1" appearance="line" [theme]="{ height: '50px' }" />
+  </div>
+</ng-template>
+
+<ng-template #userDetailsLoading>
+  <div class="user-details-loading">
+    <ngx-skeleton-loader count="1" appearance="line" [theme]="{ height: '50px' }" />
+  </div>
+</ng-template>

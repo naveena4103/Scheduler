@@ -1,0 +1,114 @@
+<mat-sidenav-container class="main-app" style="margin-left: 95px">
+  <mat-sidenav
+    #sidenav
+    mode="side"
+    opened
+    class="example-sidenav"
+    [fixedInViewport]="true"
+    [fixedTopGap]="67"
+  >
+    <div class="moduleDiv">
+      <span class="module">Settings</span>
+    </div>
+    <span *ngIf="showSearch" class="custom-form-field-gray-color search-field">
+      <mat-form-field appearance="outline" class="custom-search-bar">
+        <mat-icon matPrefix class="searchIcon">search</mat-icon>
+        <input
+          matInput
+          type="text"
+          placeholder="Search"
+          formControlName="search"
+          autocomplete="off"
+          [formControl]="searchMenu"
+        />
+      </mat-form-field>
+    </span>
+    <div class="sidebar-menu-items">
+      <mat-nav-list
+        class="menu-item"
+        *ngFor="let menuitem of searchedMenus; let i = index"
+      >
+        <ng-container>
+          <ul class="p-0 m-0">
+            <li
+              routerLinkActive="selected"
+              routerDirection="root"
+              title="{{ menuitem.title }}"
+              class="dis-flex"
+            >
+              <a
+                mat-list-item
+                class="menu-name"
+                [routerLink]="menuitem.url"
+                routerLinkActive="active"
+              >
+                <span class="menu-title">
+                  {{ menuitem.title }}
+                </span>
+              </a>
+              <ng-container
+                *ngIf="
+                  checkUserHasSubMenusPermissions(
+                    menuitem.subPages,
+                    menuitem.permission
+                  )
+                "
+              >
+                <a
+                  *ngIf="menuitem.subPages !== null"
+                  class="arrow-margin"
+                  (click)="menuitem.showSubMenu = !menuitem.showSubMenu"
+                >
+                  <mat-icon *ngIf="menuitem.showSubMenu" class="icon-arrow"
+                    >keyboard_arrow_up</mat-icon
+                  >
+                  <mat-icon *ngIf="!menuitem.showSubMenu" class="icon-arrow"
+                    >keyboard_arrow_down</mat-icon
+                  >
+                </a>
+              </ng-container>
+            </li>
+          </ul>
+        </ng-container>
+        <div
+          *ngIf="menuitem.showSubMenu && menuitem.subPages !== null"
+          class="m-l-70"
+        >
+          <ng-container>
+            <ng-container
+              *ngIf="
+                checkUserHasSubMenusPermissions(
+                  menuitem.subPages,
+                  menuitem.permission
+                )
+              "
+            >
+              <ul
+                lines="none"
+                class="p-0 m-0"
+                *ngFor="let submenuitem of menuitem.subPages"
+              >
+                <li class="dis-flex">
+                  <a
+                    class="submenu m-0"
+                    mat-list-item
+                    [routerLink]="submenuitem.url"
+                    routerLinkActive="subSelected"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                  >
+                    <span>{{ submenuitem.title }}</span>
+                  </a>
+                </li>
+              </ul>
+            </ng-container>
+          </ng-container>
+        </div>
+      </mat-nav-list>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <main>
+      <router-outlet> </router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

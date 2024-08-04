@@ -1,0 +1,59 @@
+.delete-modal-container {
+  h1 {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 8px;
+  }
+
+  background-color: #ffffff;
+  box-shadow: 0px 24px 38px 0px #14161b24;
+  padding: 16px 14px;
+  border-radius: 8px;
+
+  .modal-content-container {
+    padding: 10px;
+
+    font-weight: 400;
+  }
+
+  .modal-actions-container {
+    display: flex;
+    gap: 12%;
+    justify-content: end;
+    margin: 0px;
+    min-height: max-content;
+    padding: 8px;
+  }
+}
+
+.delete-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f44336;
+  color: white;
+  outline: none;
+  font-size: 14px;
+
+  &:hover {
+    background-color: #d70015;
+  }
+}
+
+.cancel-btn {
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20.02px;
+  letter-spacing: 0.15000000596046448px;
+  text-align: left;
+  color: #3d5afe;
+  background-color: transparent;
+  border: none;
+}
+
+.delete-modal-content {
+  font-size: 14px;
+  font-weight: 400;
+
+}

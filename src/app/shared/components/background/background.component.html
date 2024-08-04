@@ -1,0 +1,25 @@
+<div class="background-container">
+  <h1 class="background-heading">
+    <span [innerHTML]="'backgroundHeader'"></span>
+  </h1>
+
+  <svg-icon
+    id="backgroundPoweredIcon"
+    icon="icon-Powered_by"
+    class="logo"
+  ></svg-icon>
+  <ng-content></ng-content>
+
+  <svg-icon
+    id="backgroundGraphicLeft"
+    icon="icon-graphics_left"
+    class="graphics-left"
+  ></svg-icon>
+
+  <img
+    id="backgroundGraphicRight"
+    class="graphics-right"
+    src="assets/Images/Graphic Right Flatten.svg"
+    alt="graphics right"
+  />
+</div>
